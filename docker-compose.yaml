@@ -1,0 +1,26 @@
+---
+version: "3.6"
+services:
+  tvheadend:
+    image: lscr.io/linuxserver/tvheadend:latest
+    container_name: tvheadend
+
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ="Europe/Athens"
+
+    volumes:
+      - "tvheadend:/config"
+
+    ports:
+      - 9981:9981
+      - 9982:9982
+
+    devices:
+      - /dev/dvb:/dev/dvb #optional
+
+    restart: unless-stopped
+
+volumes:
+  tvheadend:
